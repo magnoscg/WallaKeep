@@ -17,7 +17,11 @@ export default class SaleService {
         //query += includeTotal ? `venta=${includeTotal}&` : "";
 
         query += tag ? `tags=${tag}&` : "";
-        query += price ? `price=${price}&` : "";
+
+        // Añado el - porque en mi api tengo un filtro less than para que saque los anuncios que sean menor o igual al precio puesto
+        query += price ? `price=-${price}&` : "";
+        
+
         query += name ? `name=${name}&` : "";
 
         // Eliminamos el último & de la query
