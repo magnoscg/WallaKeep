@@ -2,6 +2,8 @@ import React from "react";
 import './SaleSearch.css'
 import SaleService from "../../services/SaleService";
 import SaleItem from "../sale-item/SaleItem";
+import {checkIfUserHasSignIn} from "../../services/Util"
+import Tags from "../tags/Tags";
 
 const service = new SaleService();
 
@@ -10,6 +12,9 @@ export default class SaleSearch extends React.Component {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+        if(checkIfUserHasSignIn(this.props.history)) {
+            this.props.history.replace("/home/search")
+        }
 
         // 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
         this.state = {
@@ -25,9 +30,9 @@ export default class SaleSearch extends React.Component {
         // 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
         // 1. Para más información de como se usa ver el componente SignIn
         service.getTags().then((res) => {
-            if (res.ok) {
+            if (res.results) {
                 this.setState({
-                    tags: res.allowedTags
+                    tags: res.results
                 })
             }
         });
@@ -35,6 +40,13 @@ export default class SaleSearch extends React.Component {
 
     search() {
         // 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
+
+        service.getSales(this.state.search).then((res) => {
+
+            this.setState({
+                sales: res.results
+            })
+        })
     }
 
     handleSearch(event) {
@@ -59,10 +71,7 @@ export default class SaleSearch extends React.Component {
                     {
                         this.state.tags
                         &&
-                        <select name="tag" value={this.state.search.tag} onChange={this.handleSearch} className={`form-control col-2 ml-4`}>
-                            <option value="">Filter by tag</option>
-                            {this.state.tags.map((tag, index) => <option key={`${tag}-${index}`} value={tag}>{tag}</option>)}
-                        </select>
+                        <Tags name="tag" onTagChange={this.handleSearch} firstOptionName="Filter by tag" className={`form-control col-2 ml-4`}/>
                     }
                 </div>
 
@@ -81,7 +90,7 @@ export default class SaleSearch extends React.Component {
                             {
                                 this.state.sales.map((sale, index) => {
                                     return (
-                                        <div key={sale._id} className="col-4" onClick={() => this.props.history.push(`/sale/${sale._id}`)}>
+                                        <div key={sale._id} className="col-4" onClick={() => this.props.history.push(`sale/${sale._id}`)}>
                                             <SaleItem item={sale}/>
                                         </div>
                                     )
