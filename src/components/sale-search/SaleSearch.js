@@ -2,7 +2,7 @@ import React from "react";
 import './SaleSearch.css'
 import SaleService from "../../services/SaleService";
 import SaleItem from "../sale-item/SaleItem";
-import {checkIfUserHasSignIn} from "../../services/Util"
+import {checkIfUserHasSignIn, currentUser} from "../../services/Util"
 import Tags from "../tags/Tags";
 
 const service = new SaleService();
@@ -17,9 +17,21 @@ export default class SaleSearch extends React.Component {
         }
 
         // 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
-        this.state = {
+        console.log(currentUser().tag);
+        if (currentUser().tag != null) {
+
+          this.state = {
+            search: {
+              tag: currentUser().tag
+            }
+          };
+
+        } else {
+
+          this.state = {
             search: {}
-        };
+          };
+        }
 
         this.search();
 

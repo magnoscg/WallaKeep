@@ -3,6 +3,7 @@ import './SaleItem.css'
 import {HOST} from "../../services/Util";
 
 // ESTE FICHERO NO HAY QUE TOCARLO
+//cambio los nombres a ingles como lo tengo en mi nodepop
 
 export default class SaleItem extends React.Component {
     render() {
@@ -12,13 +13,13 @@ export default class SaleItem extends React.Component {
                     <div className="col-5">
                         <b>Nombre</b>
                         <br/>
-                        {this.props.item.nombre}
+                        {this.props.item.name}
 
                         <br/>
 
                         <b>Precio</b>
                         <br/>
-                        {this.props.item.precio} €
+                        {this.props.item.price} €
 
                         <br/>
 
@@ -27,7 +28,7 @@ export default class SaleItem extends React.Component {
                         {this.props.item.tags.join(", ")}
                     </div>
                     <div className="col-7 text-right">
-                        <img className={`img-thumbnail item-image`} src={`${HOST}/${this.props.item.foto}`} alt={this.props.item.nombre}/>
+                        <img className={`img-thumbnail item-image`} src={`${HOST}/${this.props.item.photo}`} alt={this.props.item.name}/>
                     </div>
                 </div>
             </div>
