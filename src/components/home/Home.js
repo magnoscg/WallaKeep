@@ -4,12 +4,17 @@ import Navbar from "../navbar/Navbar";
 import SaleSearch from "../sale-search/SaleSearch";
 import ContactUs from "../contact-us/ContactUs";
 import {Route} from "react-router-dom";
+import {checkIfUserHasSignIn} from "../../services/Util";
+import SaleItemFullScreen from "../sale-item-full-screen/SaleItemFullScreen"
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+        if(checkIfUserHasSignIn(this.props.history)) {
+            this.props.history.replace("/home")
+        }
     }
 
     render() {
@@ -44,6 +49,7 @@ export default class Home extends React.Component {
                 <Route exact path={`${this.props.match.path}/search`} component={SaleSearch}/>
                 {/*1. Crear la ruta correspondiente a el componente SaleItemFullScreen, para más información ver el componente.*/}
                 <Route exact path={`${this.props.match.path}/contact-us`} component={ContactUs}/>
+                <Route exact path={`${this.props.match.path}/sale/:id`} component={SaleItemFullScreen}/>
 
             </div>
         </div>

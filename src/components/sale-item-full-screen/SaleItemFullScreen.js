@@ -20,8 +20,10 @@ export default class SaleItemFullScreen extends React.Component {
         // The backend MUST HAVE ANE ENDPOINT TO GET SOME EXTRA DETAILS
         // of one sale
         // DON'T DO IT in real application, this is only educational purpose
+
+        /*TEngo que cambiar esto para que corresponda a mi nodepop*/
         service.getSales({}).then((res) => {
-            const items = res.result.rows;
+            const items = res.results;
 
             let item = items.find((item) => item._id === this.props.match.params.id);
 
@@ -41,7 +43,7 @@ export default class SaleItemFullScreen extends React.Component {
             <div className={`container sale-desc`}>
                 <BackButton/>
                 <div className="text-center">
-                    <img className={`item-image`} src={`${HOST}${this.state.item.foto}`} alt={this.state.item.nombre}/>
+                    <img className={`item-image`} src={`${HOST}/${this.state.item.foto}`} alt={this.state.item.nombre}/>
                     <h3>Se {this.state.item.venta ? "vende" : "alquila"} "{this.state.item.nombre}" por {this.state.item.precio} euros.</h3>
                 </div>
             </div>

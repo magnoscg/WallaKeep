@@ -27,7 +27,7 @@ export default class SaleItem extends React.Component {
                         {this.props.item.tags.join(", ")}
                     </div>
                     <div className="col-7 text-right">
-                        <img className={`img-thumbnail item-image`} src={`${HOST}${this.props.item.foto}`} alt={this.props.item.nombre}/>
+                        <img className={`img-thumbnail item-image`} src={`${HOST}/${this.props.item.foto}`} alt={this.props.item.nombre}/>
                     </div>
                 </div>
             </div>
