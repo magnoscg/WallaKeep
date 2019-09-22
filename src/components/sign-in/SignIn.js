@@ -41,22 +41,22 @@ class SignIn extends React.Component {
         // 3. Realizar las validaciones de name, surname y birthday. Debe ser mayor de 18 años
 
         if (name.trim().length <1) {
-            alert("El campo 'Nombre' no puede estar vacio")
+            alert("The field Name cant be empty")
             return
         }
 
         if(surname.trim().length <1) {
-            alert("El campo 'Apellido' no puede estar vacio")
+            alert("The field Surname cant be empty")
             return
         }
 
         if(birthday.trim() === "") {
-            alert("El campo fecha de nacimiento no puede estar vacio")
+            alert("The field Birthday cant be empty")
             return
         }
 
         if (!isOldThan18YearsOld(birthday)) {
-            alert("Tienes que ser mayor de edad para poder entrar")
+            alert("You have to be of legal age to enter wallakeep")
             return
         }
 

@@ -1,7 +1,7 @@
 import {API, HOST} from "./Util";
 
 export default class SaleService {
-    getSales({start, limit, sort, includeTotal = true, tag, price, name}) {
+    async getSales({start, limit, sort, includeTotal = true, tag, price, name}) {
         // Empezamos la query
         let query = "?";
 
@@ -26,9 +26,10 @@ export default class SaleService {
         return fetch(`${HOST}/${API}/adverts${query}`, {
             method: "GET"
         }).then(res => res.json());
+        
     }
 
-    getTags() {
+    async getTags() {
         // 2. Eliminar estas líneas y realizar la llamada a NodePop para obtener todos los tags
 
         return fetch(`${HOST}/${API}/adverts/tags`, {

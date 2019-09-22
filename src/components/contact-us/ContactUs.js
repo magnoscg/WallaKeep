@@ -1,14 +1,17 @@
 import React from "react";
 import './ContactUs.css';
-import {getSavedMessages, saveMessages} from "../../services/Util";
+import {getSavedMessages, saveMessages, checkIfUserHasSignIn} from "../../services/Util";
 import ContactUsForm from "../contact-us-form/ContactUsForm";
 import MyMessages from "../my-messages/MyMessages";
+import MessageContext from "../my-messages/MessageContext";
 
 export default class ContactUs extends React.Component {
     constructor(props) {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+
+        checkIfUserHasSignIn(this.props.history)
 
         this.state = {
             messages: getSavedMessages()
@@ -36,7 +39,12 @@ export default class ContactUs extends React.Component {
                     </div>
                     <div className="col-6 text-center">
                         {/*4. Es necesario un contexto para poder pasarle los mensajes*/}
-                        <MyMessages/>
+                        <MessageContext.Provider value={this.state.messages}>
+
+                            <MyMessages/>
+
+                        </MessageContext.Provider>
+
                     </div>
                 </div>
             </div>

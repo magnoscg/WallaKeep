@@ -12,42 +12,42 @@ export default class SaleSearch extends React.Component {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
-        if(checkIfUserHasSignIn(this.props.history)) {
-            this.props.history.replace("/home/search")
-        }
+        checkIfUserHasSignIn(this.props.history)
+        
 
         // 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
-        console.log(currentUser().tag);
-        if (currentUser().tag != null) {
+  
+            if (currentUser().tag) {
 
-          this.state = {
-            search: {
-              tag: currentUser().tag
+            this.state = {
+                search: {
+                tag: currentUser().tag
+                }
+            };
+
+            } else {
+
+            this.state = {
+                search: {}
+            };
             }
-          };
 
-        } else {
+            this.search();
 
-          this.state = {
-            search: {}
-          };
-        }
+            this.handleSearch = this.handleSearch.bind(this);
+            this.search = this.search.bind(this);
 
-        this.search();
-
-        this.handleSearch = this.handleSearch.bind(this);
-        this.search = this.search.bind(this);
-
-        // Retrieve the tags needed to filter sales
-        // 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
-        // 1. Para más información de como se usa ver el componente SignIn
-        service.getTags().then((res) => {
-            if (res.results) {
-                this.setState({
-                    tags: res.results
-                })
-            }
-        });
+            // Retrieve the tags needed to filter sales
+            // 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
+            // 1. Para más información de como se usa ver el componente SignIn
+            service.getTags().then((res) => {
+                if (res.results) {
+                    this.setState({
+                        tags: res.results
+                    })
+                }
+            });
+    
     }
 
     search() {

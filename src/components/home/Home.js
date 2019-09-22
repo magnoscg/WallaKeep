@@ -6,15 +6,16 @@ import ContactUs from "../contact-us/ContactUs";
 import {Route} from "react-router-dom";
 import {checkIfUserHasSignIn} from "../../services/Util";
 import SaleItemFullScreen from "../sale-item-full-screen/SaleItemFullScreen"
+import ErrorBoundary from './ErrorBoundary'
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
-        if(checkIfUserHasSignIn(this.props.history)) {
-            this.props.history.replace("/home")
-        }
+        checkIfUserHasSignIn(this.props.history)
+           
+        
     }
 
     render() {
@@ -42,14 +43,16 @@ export default class Home extends React.Component {
                 </header>
                 <Navbar/>
                 {/*1. Aquí se añadiría el error boundary para que si la aplicación sufre un fallo se controle y se muestre un mensaje*/}
-                <Route exact path="/home/" component={() => (<div className="container home">
-                    <i>What are you looking for? A car? A bicycle? then...</i>
-                    <h2>This is your place!</h2>
-                </div>)}/>
-                <Route exact path={`${this.props.match.path}/search`} component={SaleSearch}/>
-                {/*1. Crear la ruta correspondiente a el componente SaleItemFullScreen, para más información ver el componente.*/}
-                <Route exact path={`${this.props.match.path}/contact-us`} component={ContactUs}/>
-                <Route exact path={`${this.props.match.path}/sale/:id`} component={SaleItemFullScreen}/>
+                <ErrorBoundary>
+                    <Route exact path="/home/" component={() => (<div className="container home">
+                        <i>What are you looking for? A car? A bicycle? then...</i>
+                        <h2>This is your place!</h2>
+                    </div>)}/>
+                    <Route exact path={`${this.props.match.path}/search`} component={SaleSearch}/>
+                    {/*1. Crear la ruta correspondiente a el componente SaleItemFullScreen, para más información ver el componente.*/}
+                    <Route exact path={`${this.props.match.path}/contact-us`} component={ContactUs}/>
+                    <Route exact path={`${this.props.match.path}/sale/:id`} component={SaleItemFullScreen}/>
+                </ErrorBoundary>
 
             </div>
         </div>
