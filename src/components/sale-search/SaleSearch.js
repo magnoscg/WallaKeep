@@ -42,10 +42,11 @@ export default class SaleSearch extends React.Component {
         // 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
 
         service.getSales(this.state.search).then((res) => {
-
+            
             this.setState({
                 sales: res.results
             })
+            console.log(res.results)
         })
     }
 

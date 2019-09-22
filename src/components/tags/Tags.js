@@ -15,10 +15,13 @@ export default class Tags extends Component {
         };
 
         service.getTags().then((res) => {
-            if (res.results) {
+            if (res) {
+                console.log(res.tags)
                 this.setState({
-                    tags: res.results
+                    tags: res.tags
+                    
                 })
+                
             }
         });
     }
