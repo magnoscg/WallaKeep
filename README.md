@@ -1,4 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React app - WallaKeep
+
+![React Version](https://img.shields.io/badge/React-16.9.0-blue.svg)
+
+This project is a React app for educational purposes.
+
+Wallakeep manage my NodePop API to obtain adverts from Mongo database  (https://github.com/magnoscg/nodepop)
+
 
 ## Available Scripts
 
