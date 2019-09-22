@@ -1,0 +1,8 @@
+{
+  "short_name": "Wallakeep",
+  "name": "Save everything that you need!",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

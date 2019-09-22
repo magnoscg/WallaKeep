@@ -1,0 +1,68 @@
+body {
+    background-color: #282c34;
+}
+
+.logo-text {
+    background-color: #282c34;
+    z-index: 99;
+    height: 150px;
+}
+
+.logo-end-cover {
+    background-color: #282c34;
+    z-index: 99;
+    height: 150px;
+    width: 140px;
+}
+
+.container-logo {
+    animation: App-logo-translation infinite 3s linear;
+    margin-top: 10px;
+}
+
+.logo-bgr {
+    animation: App-logo-spin infinite 3s linear;
+    pointer-events: none;
+    background-color: #ff7e50;
+    color: #282c34;
+    border-radius: 60px;
+    text-align: center;
+    width: 90px;
+    height: 90px;
+    padding-top: 20px;
+}
+
+.App-header {
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.easter-egg {
+    color: white;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+}
+
+@keyframes App-logo-translation {
+    from {
+        transform: translateX(-105px);
+    }
+    to {
+        transform: translateX(300px);
+    }
+}

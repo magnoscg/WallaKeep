@@ -1,0 +1,21 @@
+.nav-bar-link {
+    color: white;
+    padding: 0 15px;
+    margin: 0 5px;
+    text-align: center;
+    border: solid #ff7e50 1px;
+    border-radius: 10px;
+}
+
+.active > a {
+    font-weight: bold;
+}
+
+.nav-bar-link > a {
+    color: white;
+}
+
+.nav-bar-link:hover > a {
+    text-decoration: none;
+    font-weight: bold;
+}
